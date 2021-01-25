@@ -30,4 +30,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Base")
 	float Damage;
+
+	UFUNCTION(BlueprintCallable, Category = "Enemy Base")
+	void DamageEnemy(float DamageIn);
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Enemy Base")
+	void Die();
 };

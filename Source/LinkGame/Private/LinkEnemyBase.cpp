@@ -10,3 +10,13 @@ ALinkEnemyBase::ALinkEnemyBase()
 	PrimaryActorTick.bCanEverTick = false;
 
 }
+
+void ALinkEnemyBase::DamageEnemy(float DamageIn)
+{
+	Health -= DamageIn;
+	if (Health <= 0)
+	{
+		Die();
+	}
+}
+

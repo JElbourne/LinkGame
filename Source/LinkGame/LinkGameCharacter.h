@@ -17,6 +17,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LinkGame | Player")
 	bool bIsCameraMoving;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LinkGame | Player")
+	float Health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LinkGame | Player")
+	float MaxHealth;
+
 protected:
 
 	/** Called for forwards/backward input */

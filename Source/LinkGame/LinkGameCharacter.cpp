@@ -29,6 +29,8 @@ ALinkGameCharacter::ALinkGameCharacter()
 	GetCharacterMovement()->AirControl = 0.2f;
 
 	bIsCameraMoving = false;
+
+	Health = MaxHealth;
 }
 
 //////////////////////////////////////////////////////////////////////////

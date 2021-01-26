@@ -40,39 +40,39 @@ void ALinkGameCharacter::SetupPlayerInputComponent(class UInputComponent* Player
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ALinkGameCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ALinkGameCharacter::MoveRight);
 }
 
 
+bool ALinkGameCharacter::IsFullHealth()
+{
+	return Health == MaxHealth;
+}
+
 void ALinkGameCharacter::MoveForward(float Value)
 {
 	if ((Controller != nullptr) && (Value != 0.0f) && (!bIsCameraMoving))
 	{
-		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		bIsMovingForward = true;
+		FRotator Direction = (Value > 0.0f) ? FRotator(0.f, 0.f, 0.f) : FRotator(0.f, 180.f, 0.f);
+		SetActorRotation(Direction);
 
-		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
+		AddMovementInput(FVector(1.0f, 0.f,0.f), Value);
+	}
+	else {
+		bIsMovingForward = false;
 	}
 }
 
 void ALinkGameCharacter::MoveRight(float Value)
 {
-	if ( (Controller != nullptr) && (Value != 0.0f) && (!bIsCameraMoving))
+	if ( (Controller != nullptr) && (Value != 0.0f) && (!bIsCameraMoving) && (!bIsMovingForward))
 	{
-		// find out which way is right
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-	
-		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
-		AddMovementInput(Direction, Value);
+		FRotator Direction = (Value > 0.0f) ? FRotator(0.f, 90.f, 0.f) : FRotator(0.f, 270.f, 0.f);
+		SetActorRotation(Direction);
+
+		AddMovementInput(FVector(0.f, 1.f, 0.f), Value);
 	}
 }

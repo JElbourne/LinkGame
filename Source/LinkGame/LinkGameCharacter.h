@@ -23,6 +23,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LinkGame | Player")
 	float MaxHealth;
 
+private:
+
+	bool bIsMovingForward = false;
+
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "LinkGame | Player")
+	bool IsFullHealth();
+
 protected:
 
 	/** Called for forwards/backward input */

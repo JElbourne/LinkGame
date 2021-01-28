@@ -28,9 +28,11 @@ ALinkGameCharacter::ALinkGameCharacter()
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
-	bIsCameraMoving = false;
+	bIsMovingForward = false;
 
 	Health = MaxHealth;
+
+	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -53,7 +55,7 @@ bool ALinkGameCharacter::IsFullHealth()
 
 void ALinkGameCharacter::MoveForward(float Value)
 {
-	if ((Controller != nullptr) && (Value != 0.0f) && (!bIsCameraMoving))
+	if ((Controller != nullptr) && (Value != 0.0f) && (!bIsMovementFrozen))
 	{
 		bIsMovingForward = true;
 		FRotator Direction = (Value > 0.0f) ? FRotator(0.f, 0.f, 0.f) : FRotator(0.f, 180.f, 0.f);
@@ -68,7 +70,7 @@ void ALinkGameCharacter::MoveForward(float Value)
 
 void ALinkGameCharacter::MoveRight(float Value)
 {
-	if ( (Controller != nullptr) && (Value != 0.0f) && (!bIsCameraMoving) && (!bIsMovingForward))
+	if ( (Controller != nullptr) && (Value != 0.0f) && (!bIsMovementFrozen) && (!bIsMovingForward))
 	{
 		FRotator Direction = (Value > 0.0f) ? FRotator(0.f, 90.f, 0.f) : FRotator(0.f, 270.f, 0.f);
 		SetActorRotation(Direction);

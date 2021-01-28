@@ -15,7 +15,7 @@ public:
 	ALinkGameCharacter();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LinkGame | Player")
-	bool bIsCameraMoving;
+	bool bIsMovementFrozen;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LinkGame | Player")
 	float Health;

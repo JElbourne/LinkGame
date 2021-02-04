@@ -29,6 +29,7 @@ ALinkGameCharacter::ALinkGameCharacter()
 	GetCharacterMovement()->AirControl = 0.2f;
 
 	bIsMovingForward = false;
+	bIsMovementFrozen = false;
 
 	Health = MaxHealth;
 
@@ -55,7 +56,7 @@ bool ALinkGameCharacter::IsFullHealth()
 
 void ALinkGameCharacter::MoveForward(float Value)
 {
-	if ((Controller != nullptr) && (Value != 0.0f) && (!bIsMovementFrozen))
+	if ((Controller != nullptr) && (Value != 0.0f) && bCanMove  && && (!bIsMovementFrozen))
 	{
 		bIsMovingForward = true;
 		FRotator Direction = (Value > 0.0f) ? FRotator(0.f, 0.f, 0.f) : FRotator(0.f, 180.f, 0.f);

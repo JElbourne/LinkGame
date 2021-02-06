@@ -56,7 +56,7 @@ bool ALinkGameCharacter::IsFullHealth()
 
 void ALinkGameCharacter::MoveForward(float Value)
 {
-	if ((Controller != nullptr) && (Value != 0.0f) && bCanMove  && && (!bIsMovementFrozen))
+	if ((Controller != nullptr) && (Value != 0.0f) && (!bIsMovementFrozen))
 	{
 		bIsMovingForward = true;
 		FRotator Direction = (Value > 0.0f) ? FRotator(0.f, 0.f, 0.f) : FRotator(0.f, 180.f, 0.f);

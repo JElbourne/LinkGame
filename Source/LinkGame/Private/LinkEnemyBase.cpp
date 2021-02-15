@@ -8,15 +8,18 @@ ALinkEnemyBase::ALinkEnemyBase()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-
+	CanTakeDamage = true;
 }
 
 void ALinkEnemyBase::DamageEnemy(float DamageIn)
 {
-	Health -= DamageIn;
-	if (Health <= 0)
+	if (CanTakeDamage)
 	{
-		Die();
+		Health -= DamageIn;
+		if (Health <= 0)
+		{
+			Die();
+		}
 	}
 }
 

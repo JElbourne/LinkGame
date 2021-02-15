@@ -31,6 +31,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Base")
 	float Damage;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy Base")
+	bool CanTakeDamage;
+
 	UFUNCTION(BlueprintCallable, Category = "Enemy Base")
 	void DamageEnemy(float DamageIn);
 
